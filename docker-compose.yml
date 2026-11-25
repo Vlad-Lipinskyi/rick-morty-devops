@@ -1,0 +1,10 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: rick-morty-app:1.0.0
+    container_name: rick-morty
+    ports:
+      - "8080:80"
+    restart: unless-stopped

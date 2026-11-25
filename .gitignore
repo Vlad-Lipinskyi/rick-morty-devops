@@ -1,3 +1,8 @@
 node_modules
 dist
 .parcel-cache
+*.tar
+node_modules/
+dist/
+.env
+.env.*
