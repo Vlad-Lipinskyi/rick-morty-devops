@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: rick-morty-app
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: rick-morty-app
+
+  template:
+    metadata:
+      labels:
+        app: rick-morty-app
+
+    spec:
+      containers:
+        - name: rick-morty-app
+          image: localhost:5001/rick-morty-app:2.0.0
+          imagePullPolicy: Always
+
+          ports:
+            - containerPort: 80
+              name: http
+
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: rick-morty-service
+
+spec:
+  type: NodePort
+
+  selector:
+    app: rick-morty-app
+
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+      nodePort: 30080
+      protocol: TCP
