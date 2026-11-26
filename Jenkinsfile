@@ -1,3 +1,4 @@
+
 pipeline {
     agent any
 
@@ -19,6 +20,13 @@ pipeline {
                 sh 'npm --version'
                 sh 'npm ci'
                 sh 'npm run build'
+            }
+        }
+
+        stage('Docker Build') {
+            steps {
+                echo 'Building Docker image'
+                sh 'docker build -t rick-morty-app:2.0.0 .'
             }
         }
 
